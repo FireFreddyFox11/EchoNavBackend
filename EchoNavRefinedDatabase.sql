@@ -63,7 +63,7 @@ CREATE TABLE Staff (
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- 6. Virtual Users
+-- 6. Visually Impaired Users
 CREATE TABLE VIUsers (
     id SERIAL PRIMARY KEY,
     pairingPin VARCHAR(10),
@@ -86,7 +86,7 @@ CREATE TABLE staff_invites (
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- 8. Pairing Pins (Junction)
+-- 8. Pairing Pins
 CREATE TABLE Pairing_Pins (
     id SERIAL PRIMARY KEY,
     VIUserID INTEGER REFERENCES VIUsers(id),
