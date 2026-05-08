@@ -1,3 +1,10 @@
+--WARNING--
+--THIS QUERY SHOULD ONLY BE EXECUTED ONCE--
+--IF THE TABLE CONTAINS ERRORS THEY NEED TO BE HANDLED MANUALLY--
+
+--DELETES ALL THE TABLES SO THEY DON'T CAUSE UPDATE ANOMALIES--
+DROP TABLE IF EXISTS organisations, buildings, floorPlans, nodes, Staff, VIUsers, staff_invites, Pairing_Pins, edges, EdgeToNodeConnection, beacons, Deployment_Tasks CASCADE;
+
 -- 1. Organizations (Root)
 CREATE TABLE organisations (
     id SERIAL PRIMARY KEY,
@@ -45,7 +52,6 @@ CREATE TABLE nodes (
     x FLOAT NOT NULL,
     y FLOAT NOT NULL,
     tts_verbal_guidance TEXT,
-    is_hazard BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
