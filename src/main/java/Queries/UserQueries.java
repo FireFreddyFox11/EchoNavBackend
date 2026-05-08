@@ -68,5 +68,9 @@ public class UserQueries {
                 .setParameter("pin", pin)
                 .getSingleResult();
     }
+    @Query
+    public void save(Users user){
+        em.persist(user);
+    }
 
 }

@@ -7,25 +7,31 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.OffsetDateTime;
 
 @Entity
-@Table(name = "org_buildings")
+@Table(name = "buildings")
 public class Buildings {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "org_building_id")
+    @Column(name = "id")
     private int id;
     @ManyToOne
-    @JoinColumn(name = "org_id")
+    @JoinColumn(name = "organisationid")
     private Organisations organisation;
     @Column(name = "name")
     private String name;
     @Column(name = "address")
     private String address;
+    @Column(name = "privacy_level")
+    private String privacyLevel;
     @CreationTimestamp
     @Column(name = "created_at")
     private OffsetDateTime createdAt;
     @UpdateTimestamp
     @Column(name = "updated_at")
     private OffsetDateTime updatedAt;
+
+    public Buildings() {
+
+    }
 
     public int getId() {
         return id;

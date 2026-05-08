@@ -3,6 +3,8 @@ package Entities;
 import Enumerations.UserRole;
 import com.nimbusds.openid.connect.sdk.assurance.evidences.Organization;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -10,9 +12,10 @@ import java.time.OffsetDateTime;
 
 import static org.bouncycastle.oer.its.ieee1609dot2.SignerIdentifier.self;
 
+@Setter
+@Getter
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "role", discriminatorType = DiscriminatorType.STRING)
 @Table(name = "users", schema = "public")
 public class Users {
     @Id
@@ -26,6 +29,8 @@ public class Users {
     private String name;
     @Column(name = "surname")
     private String surname;
+    @Column(name = "country")
+    private String country;
     @Column(name = "email")
     private String email;
     @Column(name = "password")
@@ -38,60 +43,6 @@ public class Users {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private OffsetDateTime updatedAt;
-    public int getUserID() {
-        return userID;
-    }
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
-    public Organisations getOrganization() {
-        return organization;
-    }
-    public void setOrganization(Organisations organization) {
-        this.organization = organization;
-    }
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public String getSurname() {
-        return surname;
-    }
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    public String getPin() {
-        return pin;
-    }
-    public void setPin(String pin) {
-        this.pin = pin;
-    }
-    public OffsetDateTime getCreatedAt() {
-        return createdAt;
-    }
-    public void setCreatedAt(OffsetDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-    public OffsetDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-    public void setUpdatedAt(OffsetDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
 
     protected Users() {}
 
@@ -100,6 +51,7 @@ public class Users {
         this.organization = builder.organization;
         this.name = builder.name;
         this.surname = builder.surname;
+        this.country = builder.country;
         this.email = builder.email;
         this.password = builder.password;
         this.pin = builder.pin;
@@ -114,6 +66,7 @@ public class Users {
         protected Organisations organization;
         protected String name;
         protected String surname;
+        protected String country;
         protected String email;
         protected String password;
         protected String pin;
@@ -135,6 +88,11 @@ public class Users {
 
         public T surname(String surname) {
             this.surname = surname;
+            return self();
+        }
+
+        public T country(String country) {
+            this.country = country;
             return self();
         }
 

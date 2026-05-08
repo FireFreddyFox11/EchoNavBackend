@@ -55,11 +55,6 @@ public class OrganisationQueries {
     }
     @Query
     public void save(Organisations organisations) {
-        if (organisations.getOrgID() == 0)
-        {
-            em.persist(organisations);
-        } else {
-            em.merge(organisations);
-        }
+        em.persist(organisations);
     }
 }

@@ -22,7 +22,7 @@ public class OrganisationController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Organisation already exists!");
         }
         else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Organisation already exists!");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error. Something went wrong!");
         }
     }
 }
